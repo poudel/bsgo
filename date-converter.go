@@ -135,11 +135,12 @@ func sum(input []int) int {
     for _, i := range input {
         sum += i
     }
+    return sum
 }
 
 func convert_bs_to_ad(date_in_bs samwat) time.Time {
-    days := sum(BS_YEAR_TO_MONTHS[date_in_bs.year][1:date_in_bs.month])
-
+    months_of_year := BS_YEAR_TO_MONTHS[date_in_bs.year]
+    days := sum(months_of_year[1:date_in_bs.month])
     year := date_in_bs.year - 1
 
     for year >= bs_scale.year {
@@ -160,5 +161,5 @@ func convert_bs_to_ad(date_in_bs samwat) time.Time {
 func main(){
     nepali_date := convert_ad_to_bs(time.Date(2017, time.May, 18, 0, 0, 0, 0, time.UTC))
     fmt.Println(nepali_date)
-    //fmt.Println(convert_bs_to_ad(samwat{2074, 2, 4}))
+    fmt.Println(convert_bs_to_ad(samwat{2074, 2, 4}))
 }
